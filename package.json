@@ -1,0 +1,33 @@
+{
+  "name": "oop-igititagain",
+  "version": "1.0.0",
+  "description": "Team Profile Generator",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolfgarb/OOP-IGitItAgain.git"
+  },
+  "keywords": [
+    "node",
+    "oop",
+    "js"
+  ],
+  "author": "wolfgarb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wolfgarb/OOP-IGitItAgain/issues"
+  },
+  "homepage": "https://github.com/wolfgarb/OOP-IGitItAgain#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}

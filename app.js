@@ -53,33 +53,94 @@ function addManager() {
 function addNewMember() {
     inquirer.prompt([
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'memberType',
             message: 'Please select a role to add a new team member, otherwise select finish. ',
             choices: ['Engineer', 'Intern', 'Finish building team'],
         }
     ])
-    .then(choice => {
-        console.log(choice);
-        if (choice === 'Engineer') {
+    .then((choice) => {
+        console.log(choice.memberType);
+        if (choice.memberType === 'Engineer') {
             addEngineer();
         }
-        if (choice === 'Intern') {
+        if (choice.memberType === 'Intern') {
             addIntern();
         }
-        else {
+        if (choice.memberType === 'Finish building team') {
             finishTeam();
         }
     })
 };
 
-function addEngineer(){
-    console.log(teamMembers);
-}
+function addEngineer() {
+    console.log(`
+    ================
+    Add New Engineer
+    ================
+    `)
+    inquirer.prompt([
+    {
+        type: 'input',
+        name: 'engineerName',
+        message: 'Please enter the name of the engineer'
+    },
+    {
+        type: 'input',
+        name: 'engineerID',
+        message: 'Please enter the employee ID numer'
+    },
+    {
+        type: 'input',
+        name: 'engineerEmail',
+        message: 'Enter their email'
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Enter their GitHub username'
+    }
+])
+    .then(answers => {
+        const engineer = new Engineer(answers.engineerName, answers.engineerID, answers.engineerEmail, answers.github);
+        teamMembers.push(engineer);
+        addNewMember();
+    });
+};
 
 function addIntern(){
-    console.log(teamMembers);
-
+    console.log(`
+    ==============
+    Add New Intern
+    ==============
+    `)
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'internName',
+            message: 'Enter the name of the intern'
+        },
+        {
+            type: 'input',
+            name: 'internID',
+            message: 'Enter the employee ID'
+        },
+        {
+            type: 'input',
+            name: 'internEmail',
+            message: 'Enter the email of this intern'
+        },
+        {
+            type: 'input',
+            name: 'school',
+            message: 'Enter the school this intern is attending'
+        }
+    ])
+    .then(answers => {
+        const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.school);
+        teamMembers.push(intern);
+        addNewMember();
+    })
 }
 
 // IF finish: deploy => copyFile & writeFile
@@ -90,13 +151,9 @@ function addIntern(){
 
 function finishTeam() {
     console.log(teamMembers);
-    
+
 
 }
-
-
-
-
 
 
 addManager();

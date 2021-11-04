@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
-const { writeFile, copyFile } = require('./utils/gen-site.js')
+// const { writeFile, copyFile } = require('./utils/gen-site.js')
+const fs = require('fs');
 const genPage = require('./src/page-template.js')
 
 const Manager = require('./lib/Manager');
@@ -49,29 +50,6 @@ function addManager() {
 // then addNewMember will handle engineer OR intern OR finish adding members
 // use conditionals to determine which was chosen 
 // type: checkbox
-
-function addNewMember() {
-    inquirer.prompt([
-        {
-            type: 'list',
-            name: 'memberType',
-            message: 'Please select a role to add a new team member, otherwise select finish. ',
-            choices: ['Engineer', 'Intern', 'Finish building team'],
-        }
-    ])
-    .then((choice) => {
-        console.log(choice.memberType);
-        if (choice.memberType === 'Engineer') {
-            addEngineer();
-        }
-        if (choice.memberType === 'Intern') {
-            addIntern();
-        }
-        if (choice.memberType === 'Finish building team') {
-            finishTeam();
-        }
-    })
-};
 
 function addEngineer() {
     console.log(`
@@ -149,11 +127,39 @@ function addIntern(){
 // then ~(pagehtml) => writeFile(pageHtml)
 // then (writeFileResponse) => copyFile()
 
-function finishTeam() {
+function addNewMember() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'memberType',
+            message: 'Please select a role to add a new team member, otherwise select finish. ',
+            choices: ['Engineer', 'Intern', 'Finish building team'],
+        }
+    ])
+    .then((choice) => {
+        console.log(choice.memberType);
+        if (choice.memberType === 'Engineer') {
+            addEngineer();
+        }
+        if (choice.memberType === 'Intern') {
+            addIntern();
+        }
+        if (choice.memberType === 'Finish building team') {
+            return finishTeam('./dist/index.html', genPage(teamMembers));
+        }
+    })
+};
+
+function finishTeam(fileName, data) {
     console.log(teamMembers);
-
-
-}
+    fs.writeFile(fileName, data, (err) => {
+        if (err) {
+         throw err;
+        } else {
+          console.log('File written');
+        }
+      })
+    };
 
 
 addManager();

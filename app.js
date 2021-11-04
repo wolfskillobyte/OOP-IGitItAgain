@@ -73,12 +73,29 @@ function addNewMember() {
     })
 };
 
-function addEngineer();
+function addEngineer(){
+    console.log(teamMembers);
+}
 
-function addIntern();
+function addIntern(){
+    console.log(teamMembers);
 
-// once they have entered a minimum # of employees,  add option to finish?
+}
+
 // IF finish: deploy => copyFile & writeFile
+// ~ notate semantics for parameters
+// take ~(data) => generatePage(data)
+// then ~(pagehtml) => writeFile(pageHtml)
+// then (writeFileResponse) => copyFile()
+
+function finishTeam() {
+    console.log(teamMembers);
+    
+
+}
+
+
+
 
 
 

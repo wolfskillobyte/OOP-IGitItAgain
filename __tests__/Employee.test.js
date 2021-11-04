@@ -1,7 +1,8 @@
 const Employee = require('../lib/Employee.js');
 
-test('get employee name', () => {
-    const emp = new Employee('Dave');
+jest.mock('../lib/Employee.js');
 
-    expect(emp.name).toBe('Dave');
+test('get employee name', () => {
+    const employee = new Employee;
+console.log(employee);
 });

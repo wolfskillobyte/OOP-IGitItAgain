@@ -1,4 +1,5 @@
 function genPage(teamMembers) {
+    console.log(teamMembers);
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -19,8 +20,7 @@ function genPage(teamMembers) {
         </header>
 
     <main>
-
-
+${teamMembers[0].getRole()}
     </main>
 
         <footer>

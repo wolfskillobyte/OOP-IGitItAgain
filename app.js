@@ -42,7 +42,6 @@ function addManager() {
     .then(answers => {
         const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNum);
         teamMembers.push(manager);
-        console.log(teamMembers);
         addNewMember();
     })
 };
@@ -137,7 +136,6 @@ function addNewMember() {
         }
     ])
     .then((choice) => {
-        console.log(choice.memberType);
         if (choice.memberType === 'Engineer') {
             addEngineer();
         }
@@ -151,7 +149,6 @@ function addNewMember() {
 };
 
 function finishTeam(fileName, data) {
-    console.log(teamMembers);
     fs.writeFile(fileName, data, (err) => {
         if (err) {
          throw err;

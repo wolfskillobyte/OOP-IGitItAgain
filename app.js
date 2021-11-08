@@ -176,7 +176,7 @@ function finishTeam(fileName, data) {
     if (err) {
       throw err;
     } else {
-      console.log("File written");
+      console.log("File written. It lives in the ``/dist`` folder!");
     }
   });
 }

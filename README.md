@@ -25,6 +25,8 @@ Once cloned, you can use the command ``node app`` to initialize the application 
 
 <img src='assets/install1.png' />
 
+After the user has chosen to finish building their team, the ``index.html`` file will be found in the ``/dist`` folder.
+
 ## Tests
 _This project utilized Jest for testing_
 

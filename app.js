@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
-// const { writeFile, copyFile } = require('./utils/gen-site.js')
 const fs = require('fs');
-const genPage = require('./src/page-template.js')
+const generateTeam = require('./src/test-template.js')
 
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -17,7 +16,7 @@ function addManager() {
     Welcome to the Team Profile Generator!
     ======================================
     `)
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'managerName',
@@ -42,6 +41,7 @@ function addManager() {
     .then(answers => {
         const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOfficeNum);
         teamMembers.push(manager);
+        console.log(teamMembers);
         addNewMember();
     })
 };
@@ -56,7 +56,7 @@ function addEngineer() {
     Add New Engineer
     ================
     `)
-    inquirer.prompt([
+    return inquirer.prompt([
     {
         type: 'input',
         name: 'engineerName',
@@ -91,7 +91,7 @@ function addIntern(){
     Add New Intern
     ==============
     `)
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'input',
             name: 'internName',
@@ -127,7 +127,7 @@ function addIntern(){
 // then (writeFileResponse) => copyFile()
 
 function addNewMember() {
-    inquirer.prompt([
+    return inquirer.prompt([
         {
             type: 'list',
             name: 'memberType',
@@ -136,6 +136,7 @@ function addNewMember() {
         }
     ])
     .then((choice) => {
+        console.log(choice.memberType);
         if (choice.memberType === 'Engineer') {
             addEngineer();
         }
@@ -143,12 +144,14 @@ function addNewMember() {
             addIntern();
         }
         if (choice.memberType === 'Finish building team') {
-            return finishTeam('./dist/index.html', genPage(teamMembers));
+            console.log(teamMembers);
+            return finishTeam('./dist/index.html', generateTeam(teamMembers));
         }
     })
 };
 
 function finishTeam(fileName, data) {
+    console.log(teamMembers);
     fs.writeFile(fileName, data, (err) => {
         if (err) {
          throw err;

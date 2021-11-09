@@ -72,7 +72,7 @@ function addEngineer() {
       {
         type: "input",
         name: "engineerID",
-        message: "Please enter the employee ID numer",
+        message: "Please enter the employee ID number",
       },
       {
         type: "input",
